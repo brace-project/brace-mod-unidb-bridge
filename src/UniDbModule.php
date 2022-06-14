@@ -2,6 +2,7 @@
 
 namespace Brace\UniDbBridge;
 
+use Brace\Command\CliValueArgument;
 use Brace\Core\BraceApp;
 use Brace\Core\BraceModule;
 use Phore\Di\Container\Producer\DiService;
@@ -32,6 +33,6 @@ class UniDbModule implements BraceModule
                 $con = $app->get($key, UniDb::class);
                 $con->createSchema();
             }
-        });
+        }, "Write the UniDb schema to the database", [new CliValueArgument("--name", "The name of the database id")]);
     }
 }
